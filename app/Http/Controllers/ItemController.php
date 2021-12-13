@@ -74,12 +74,39 @@ class ItemController extends Controller
     // Validate our input, update $id record in DB, redirect to index
     public function update(Request $request, $id)
     {
-        dd('update');
+        // dd('update');
+        $rules = [
+            'category_id' => 'required|max:10|numeric',
+            'title' => 'required|unique:items,title|max:100,'.$id,
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'sku' => 'required|unique:items,sku|alpha_num,'.$id,
+            'picture' => 'required|image'
+        ];
+
+        $validator = $this->validate($request, $rules);
+
+        $item = \App\Models\Item::find($id);
+        if ($item != null) {
+            $item->category_id = $request->category_id;
+            $item->title = $request->title;
+            $item->description = $request->description;
+            $item->price = $request->price;
+            $item->quantity = $request->quantity;
+            $item->sku = $request->sku;
+            $item->picture = $request->picture;
+            $item->save();
+
+            Session::flash('success', $item->title.' has been updated.');
+        } else {
+            Session::flash('error', 'Item not found.');
+        }
+        return redirect()->route('items.index');
     }
 
     // Retrieve single item using $id, delete from DB, redirect to index
     public function destroy($id)
     {
-        dd('destroy');
+        dd('destroy');  
     }
-}
