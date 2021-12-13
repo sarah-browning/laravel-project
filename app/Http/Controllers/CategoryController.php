@@ -43,7 +43,14 @@ class CategoryController extends Controller
     // Retrieve single category using $id, pass to show view
     public function show($id)
     {
-        dd('show');
+        // dd('show');
+        $category = \App\Models\Category::find($id);
+        if ($category != null) {
+            return view('categories.show')->with('category', $category);
+        } else {
+            Session::flash('error', 'Category not found.');
+            return redirect()->route('categories.index');
+        }
     }
 
     //Retrieve single category using $id, pass to edit view

@@ -58,7 +58,14 @@ class ItemController extends Controller
     // Retrieve single item using $id, pass to show view
     public function show($id)
     {
-        dd('show');
+        // dd('show');
+        $item = \App\Models\Item::find($id);
+        if ($item != null) {
+            return view('items.show')->with('item', $item);
+        } else {
+            Session::flash('error', 'Item not found.');
+            return redirect()->route('items.index');
+        }
     }
 
     //Retrieve single item using $id, pass to edit view
