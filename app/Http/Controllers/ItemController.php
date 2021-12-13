@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Session;
 use Image;
+use Storage;
 
 class ItemController extends Controller
 {
@@ -47,10 +48,10 @@ class ItemController extends Controller
         $item->quantity = $request->quantity;
         $item->sku = $request->sku;
         $filename = $request->picture->getClientOriginalName();
-        $item->picture = $request->file('picture')->storeAs('/storage/images/uploads',$filename);
+        $item->picture = $request->file('picture')->move('storage/images/uploads',$filename);
         $item->save();
 
-        Session::flash('success', $item->title.' has been added to the database. The image file is located at /storage/images/uploads/'.$filename.'.');
+        Session::flash('success', $item->title.' has been added to the database. The image file is located at public/storage/images/uploads/'.$filename.'.');
         return redirect()->route('items.index');
     }
 
@@ -98,10 +99,10 @@ class ItemController extends Controller
             $item->quantity = $request->quantity;
             $item->sku = $request->sku;
             $filename = $request->picture->getClientOriginalName();
-            $item->picture = $request->file('picture')->storeAs('/storage/images/uploads',$filename);
+            $item->picture = $request->file('picture')->move('storage/images/uploads',$filename);
             $item->save();
 
-            Session::flash('success', $item->title.' has been updated.  The image file is located at /storage/images/uploads/'.$filename.'.');
+            Session::flash('success', $item->title.' has been updated.  The image file is located at public/storage/images/uploads/'.$filename.'.');
         } else {
             Session::flash('error', 'Item not found.');
         }
@@ -114,7 +115,9 @@ class ItemController extends Controller
         // dd('destroy');
         $item = \App\Models\Item::find($id);
         if ($item != null) {
+            $filename = $item->picture;
             $item_name = $item->title;
+            unlink($filename);
             $item->delete();
 
             Session::flash('success', $item_name.' has been deleted.');
