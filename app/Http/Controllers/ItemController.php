@@ -10,7 +10,7 @@ class ItemController extends Controller
     public function index()
     {
         $items = \App\Models\Item::all()->sortBy('item');
-        dd($items);
+        // dd($items);
         return view('items.index')->with('items', $items);
     }
 
