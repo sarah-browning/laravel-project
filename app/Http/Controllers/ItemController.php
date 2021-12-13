@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Session;
+use Image;
 
 class ItemController extends Controller
 {
@@ -45,10 +46,11 @@ class ItemController extends Controller
         $item->price = $request->price;
         $item->quantity = $request->quantity;
         $item->sku = $request->sku;
-        $item->picture = $request->picture;
+        $filename = $request->picture->getClientOriginalName();
+        $item->picture = $request->file('picture')->storeAs('/storage/images/uploads',$filename);
         $item->save();
 
-        Session::flash('success', 'A new item has been added to the database.');
+        Session::flash('success', $item->title.' has been added to the database. The image file is located at /storage/images/uploads/'.$filename.'.');
         return redirect()->route('items.index');
     }
 
@@ -95,10 +97,11 @@ class ItemController extends Controller
             $item->price = $request->price;
             $item->quantity = $request->quantity;
             $item->sku = $request->sku;
-            $item->picture = $request->picture;
+            $filename = $request->picture->getClientOriginalName();
+            $item->picture = $request->file('picture')->storeAs('/storage/images/uploads',$filename);
             $item->save();
 
-            Session::flash('success', $item->title.' has been updated.');
+            Session::flash('success', $item->title.' has been updated.  The image file is located at /storage/images/uploads/'.$filename.'.');
         } else {
             Session::flash('error', 'Item not found.');
         }
