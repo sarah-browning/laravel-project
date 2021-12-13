@@ -15,19 +15,24 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id')->unsigned()->nullable();
-            $table->string('title', 100);
+            $table->string('title', 100)
+                  ->unique();
             $table->text('description');
-            $table->decimal('price', 10, 2);
-            $table->integer('quantity');
-            $table->string('sku');
+            $table->foreignId('category_id')
+                  ->unsigned()
+                  ->constrained('categories')
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
+            $table->decimal('price', $precision = 10, $scale = 2)
+                  ->unsigned();
+            $table->integer('quantity')->unsigned();
+            $table->string('sku')->unique();
             $table->string('picture');
             $table->timestamps();
             $table->softDeletes();
 
             $table->unique(['title', 'sku']);
             $table->index(['title']);
-            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
         });
     }
 
