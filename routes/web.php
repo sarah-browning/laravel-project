@@ -39,6 +39,7 @@ Route::get('/series/{id}/edit', 'App\Http\Controllers\SeriesController@edit');
 Route::patch('/series/{id}', 'App\Http\Controllers\SeriesController@update');
 Route::delete('/series/{id}', 'App\Http\Controllers\SeriesController@destroy');
 
-// Name Spaces
+// Resource Controller Routes
+Route::resource('public', 'App\Http\Controllers\PublicController');
 Route::resource('companies', 'App\Http\Controllers\CompanyController');
 Route::resource('series', 'App\Http\Controllers\SeriesController');
