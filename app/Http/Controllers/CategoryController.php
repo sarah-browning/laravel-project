@@ -3,82 +3,50 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Session;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Retrieve list of all categories, pass to View
     public function index()
     {
-        //
+        $categories = \App\Models\Category::all()->sortBy('category');  //sortByDesc
+        dd($categories);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    // Show View to add new Category
     public function create()
     {
-        //
+        dd('create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    // Validate input, insert into DB, redirect to index
     public function store(Request $request)
     {
-        //
+        dd('store');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Retrieve single category using $id, pass to show view
     public function show($id)
     {
-        //
+        dd('show');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Retrieve single category using $id, pass to edit view
     public function edit($id)
     {
-        //
+        dd('edit');
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Validate our input, update $id record in DB, redirect to index
     public function update(Request $request, $id)
     {
-        //
+        dd('update');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    // Retrieve single category using $id, delete from DB, redirect to index
     public function destroy($id)
     {
-        //
+        dd('destroy');
     }
 }
