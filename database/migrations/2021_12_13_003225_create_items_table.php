@@ -15,7 +15,19 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
+            $table->bigInteger('category_id')->unsigned()->nullable();
+            $table->string('title', 100);
+            $table->text('description');
+            $table->decimal('price', 10, 2);
+            $table->integer('quantity');
+            $table->string('sku');
+            $table->string('picture');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->unique(['title', 'sku']);
+            $table->index(['title']);
+            $table->foreign('company_id')->references('id')->on('categories')->onUpdate('cascade');
         });
     }
 
