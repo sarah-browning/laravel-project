@@ -84,6 +84,16 @@ class CategoryController extends Controller
     // Retrieve single category using $id, delete from DB, redirect to index
     public function destroy($id)
     {
-        dd('destroy');        
+        // dd('destroy');
+        $category = \App\Models\Category::find($id);
+        if ($category != null) {
+            $category_name = $category->category;
+            $category->delete();
+
+            Session::flash('success', $category_name.' has been deleted.');
+        } else {
+            Session::flash('error', 'Category not found.');
+        }
+        return redirect()->route('categories.index');
     }
 }
