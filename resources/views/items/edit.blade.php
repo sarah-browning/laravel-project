@@ -8,7 +8,7 @@
                     <div class="card-header">Edit Item</div>
 
                     <div class="card-body">
-                        {!! Form::model($item, ['route' => ['items.update', $item->id], 'method' => 'PUT']) !!}
+                        {!! Form::model($item, ['route' => ['items.update', $item->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data', 'files' => true, 'class' => 'form']) !!}
                             {{ Form::label('title', 'Title', ['class' => 'label']) }}
                             {{ Form::text('title', null, ['class' => 'form-control']) }}
                             {{ Form::label('description', 'Description', ['class' => 'label']) }}
