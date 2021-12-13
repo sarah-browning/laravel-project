@@ -6,11 +6,12 @@ use Illuminate\Http\Request;
 
 class ItemController extends Controller
 {
-    // Retrieve list of all items, pass to View
+    // Retrieve list of all items, sort by ascending, pass to View
     public function index()
     {
-        $items = \App\Models\Item::all()->sortBy('item');  //sortByDesc
+        $items = \App\Models\Item::all()->sortBy('item');
         dd($items);
+        return view('items.index')->with('items', $items);
     }
 
     // Show View to add new Item
