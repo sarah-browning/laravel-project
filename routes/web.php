@@ -21,23 +21,23 @@ Route::get('/', function () {
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/home', 'App\Http\Controllers\HomeController::class@index')->name('home');
+// Route::get('/home', 'App\Http\Controllers\HomeController::class@index')->name('home');
 
-// Company CRUD Routes
-Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
-Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
-Route::get('/companies/{id}', 'App\Http\Controllers\CompanyController@show');
-Route::get('/companies/{id}/edit', 'App\Http\Controllers\CompanyController@edit');
-Route::patch('/companies/{id}', 'App\Http\Controllers\CompanyController@update');
-Route::delete('/companies/{id}', 'App\Http\Controllers\CompanyController@destroy');
+// // Company CRUD Routes
+// Route::get('/companies', 'App\Http\Controllers\CompanyController@index');
+// Route::post('/companies', 'App\Http\Controllers\CompanyController@store');
+// Route::get('/companies/{id}', 'App\Http\Controllers\CompanyController@show');
+// Route::get('/companies/{id}/edit', 'App\Http\Controllers\CompanyController@edit');
+// Route::patch('/companies/{id}', 'App\Http\Controllers\CompanyController@update');
+// Route::delete('/companies/{id}', 'App\Http\Controllers\CompanyController@destroy');
 
-// Series CRUD Routes
-Route::get('/series', 'App\Http\Controllers\SeriesController@index');
-Route::post('/series', 'App\Http\Controllers\SeriesController@store');
-Route::get('/series/{id}', 'App\Http\Controllers\SeriesController@show');
-Route::get('/series/{id}/edit', 'App\Http\Controllers\SeriesController@edit');
-Route::patch('/series/{id}', 'App\Http\Controllers\SeriesController@update');
-Route::delete('/series/{id}', 'App\Http\Controllers\SeriesController@destroy');
+// // Series CRUD Routes
+// Route::get('/series', 'App\Http\Controllers\SeriesController@index');
+// Route::post('/series', 'App\Http\Controllers\SeriesController@store');
+// Route::get('/series/{id}', 'App\Http\Controllers\SeriesController@show');
+// Route::get('/series/{id}/edit', 'App\Http\Controllers\SeriesController@edit');
+// Route::patch('/series/{id}', 'App\Http\Controllers\SeriesController@update');
+// Route::delete('/series/{id}', 'App\Http\Controllers\SeriesController@destroy');
 
 // Resource Controller Routes
 Route::resource('public', 'App\Http\Controllers\PublicController');
