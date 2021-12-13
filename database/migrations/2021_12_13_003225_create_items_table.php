@@ -27,7 +27,7 @@ class CreateItemsTable extends Migration
 
             $table->unique(['title', 'sku']);
             $table->index(['title']);
-            $table->foreign('company_id')->references('id')->on('categories')->onUpdate('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onUpdate('cascade');
         });
     }
 
