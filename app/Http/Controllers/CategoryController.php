@@ -7,17 +7,19 @@ use Session;
 
 class CategoryController extends Controller
 {
-    // Retrieve list of all categories, pass to View
+    // Retrieve list of all categories, sort by ascending, pass to View
     public function index()
     {
-        $categories = \App\Models\Category::all()->sortBy('category');  //sortByDesc
-        dd($categories);
+        $categories = \App\Models\Category::all()->sortBy('category');
+        //dd($categories);
+        return view('categories.index')->with('categories', $categories);
     }
 
     // Show View to add new Category
     public function create()
     {
-        dd('create');
+        // dd('create');
+        return view('categories.create');
     }
 
     // Validate input, insert into DB, redirect to index
