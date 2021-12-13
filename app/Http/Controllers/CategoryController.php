@@ -25,7 +25,19 @@ class CategoryController extends Controller
     // Validate input, insert into DB, redirect to index
     public function store(Request $request)
     {
-        dd('store');
+        // dd('store');
+        $rules = [
+            'category' => 'required|max:50|unique:categories,category'
+        ];
+
+        $validator = $this->validate($request, $rules);
+
+        $category = new \App\Models\Category;
+        $category->category = $request->category;
+        $category->save();
+
+        Session::flash('success', 'A new category has been added to the database.');
+        return redirect()->route('categories.index');
     }
 
     // Retrieve single category using $id, pass to show view
