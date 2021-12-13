@@ -64,7 +64,7 @@ class ItemController extends Controller
         // dd('edit');
         $item = \App\Models\Item::find($id);
         if ($item != null) {
-            return view('items.edit')->with(['item', $item]);
+            return view('items.edit')->with('item', $item);
         } else {
             Session::flash('error', 'Item not found.');
             return redirect()->route('items.index');
@@ -77,11 +77,11 @@ class ItemController extends Controller
         // dd('update');
         $rules = [
             'category_id' => 'required|max:10|numeric',
-            'title' => 'required|unique:items,title|max:100,'.$id,
+            'title' => 'required|max:100|unique:items,title,'.$id,
             'description' => 'required',
             'price' => 'required|numeric',
             'quantity' => 'required|numeric',
-            'sku' => 'required|unique:items,sku|alpha_num,'.$id,
+            'sku' => 'required|alpha_num|unique:items,sku,'.$id,
             'picture' => 'required|image'
         ];
 
