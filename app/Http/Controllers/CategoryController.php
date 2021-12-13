@@ -62,12 +62,28 @@ class CategoryController extends Controller
     // Validate our input, update $id record in DB, redirect to index
     public function update(Request $request, $id)
     {
-        dd('update');
+        // dd('update');
+        $rules = [
+            'category' => 'required|max:50|unique:categories,category,'.$id
+        ];
+
+        $validator = $this->validate($request, $rules);
+
+        $category = \App\Models\Category::find($id);
+        if ($category != null) {
+            $category->category = $request->category;
+            $category->save();
+
+            Session::flash('success', $category->category.' has been updated.');
+        } else {
+            Session::flash('error', 'Category not found.');
+        }
+        return redirect()->route('categories.index');
     }
 
     // Retrieve single category using $id, delete from DB, redirect to index
     public function destroy($id)
     {
-        dd('destroy');
+        dd('destroy');        
     }
 }
