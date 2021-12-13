@@ -49,7 +49,14 @@ class CategoryController extends Controller
     //Retrieve single category using $id, pass to edit view
     public function edit($id)
     {
-        dd('edit');
+        // dd('edit');
+        $category = \App\Models\Category::find($id);
+        if ($category != null) {
+            return view('categories.edit')->with('category', $category);
+        } else {
+            Session::flash('error', 'Category not found.');
+            return redirect()->route('categories.index');
+        }
     }
 
     // Validate our input, update $id record in DB, redirect to index
