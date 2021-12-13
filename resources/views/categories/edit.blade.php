@@ -11,6 +11,9 @@
                         {!! Form::model($category, ['route' => ['categories.update', $category->id], 'method' => 'PUT']) !!}
                             {{ Form::label('category', 'Category', ['class' => 'label']) }}
                             {{ Form::text('category', null, ['class'=>'form-control']) }}
+                            @error('category')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
                             {{ Form::submit('Save Category', ['class'=> 'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px'])}}
                         {!! Form::close() !!}
                     </div>
