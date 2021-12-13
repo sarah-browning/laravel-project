@@ -108,5 +108,16 @@ class ItemController extends Controller
     // Retrieve single item using $id, delete from DB, redirect to index
     public function destroy($id)
     {
-        dd('destroy');  
+        // dd('destroy');
+        $item = \App\Models\Item::find($id);
+        if ($item != null) {
+            $item_name = $item->title;
+            $item->delete();
+
+            Session::flash('success', $item_name.' has been deleted.');
+        } else {
+            Session::flash('error', 'Item not found.');
+        }
+        return redirect()->route('items.index');
     }
+}
