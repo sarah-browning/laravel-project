@@ -42,10 +42,10 @@ class ItemController extends Controller
         $item->category_id = $request->category_id;
         $item->title = $request->title;
         $item->description = $request->description;
-        $item->price= $request->price;
-        $item->quantity= $request->quantity;
-        $item->sku= $request->sku;
-        $item->picture= $request->picture;
+        $item->price = $request->price;
+        $item->quantity = $request->quantity;
+        $item->sku = $request->sku;
+        $item->picture = $request->picture;
         $item->save();
 
         Session::flash('success', 'A new item has been added to the database.');
@@ -61,7 +61,14 @@ class ItemController extends Controller
     //Retrieve single item using $id, pass to edit view
     public function edit($id)
     {
-        dd('edit');
+        // dd('edit');
+        $item = \App\Models\Item::find($id);
+        if ($item != null) {
+            return view('items.edit')->with(['item', $item]);
+        } else {
+            Session::flash('error', 'Item not found.');
+            return redirect()->route('items.index');
+        }
     }
 
     // Validate our input, update $id record in DB, redirect to index
