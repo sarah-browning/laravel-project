@@ -8,7 +8,7 @@
                     <div class="card-header">Create a Category</div>
 
                     <div class="card-body">
-                        {!! Form::open(['route' => 'categories.store', 'method' => 'post']) !!}
+                        {!! Form::open(['route' => 'categories.store', 'method' => 'post', 'enctype' => 'multipart/form-data', 'class' => 'form']) !!}
                             {{ Form::label('category', 'Add Category') }}
                             {{ Form::text('category', null, ['class'=>'form-control', 'style'=>'', 'id'=>'category' ]) }}
                             {{ Form::submit('Add Category', ['class'=> 'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px'])}}

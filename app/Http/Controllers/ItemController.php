@@ -17,7 +17,8 @@ class ItemController extends Controller
     // Show View to add new Item
     public function create()
     {
-        dd('create');
+        // dd('create');
+        return view('items.create');
     }
 
     // Validate input, insert into DB, redirect to index
