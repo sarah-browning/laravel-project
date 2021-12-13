@@ -18,11 +18,9 @@
                         <table class="table">
                             <thead>
                                 <th>#</th>
-                                <th>Item</th>
-                                <th>Category ID</th>
-                                {{-- <th>Category</th> --}}
                                 <th>Title</th>
                                 <th>Description</th>
+                                <th>Category ID</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>SKU</th>
@@ -33,14 +31,9 @@
                                 @foreach ($items as $item)
                                     <tr>
                                         <td>{{ $item->id }}</td>
-                                        <td>{{ $item->category_id }}</td>
-                                        {{-- <td>
-                                            @foreach ($item->category as $category)
-                                                $category->category                                                
-                                            @endforeach                                        
-                                        </td> --}}
                                         <td>{{ $item->title }}</td>
                                         <td>{{ $item->description }}</td>
+                                        <td>{{ $item->category_id }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->sku }}</td>
